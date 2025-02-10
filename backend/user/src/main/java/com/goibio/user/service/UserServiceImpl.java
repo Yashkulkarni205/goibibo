@@ -4,16 +4,24 @@ import com.goibio.user.dto.UserDTO;
 import com.goibio.user.entity.User;
 import com.goibio.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    PasswordEncoder passwordEncoder;
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + email));
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), new ArrayList<>());
+    }
     @Override
     public String register(UserDTO userDto) {
         if(userRepository.findByEmail(userDto.getEmail()).isPresent())
@@ -22,14 +30,13 @@ public class UserServiceImpl implements UserService {
             return "This phone number is already in use. Please login or try a different one.";
         else {
             User user = userDto.toEntity();
-            user.setPassword(passwordEncoder.encode(userDto.getPassword()));
             userRepository.save(user);
             return "success";
         }
     }
-
     @Override
-    public ResponseEntity<UserDTO> getUser(String email) {
-        return null;
+    public UserDTO getUser(String email) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        return userOptional.map(User::toDTO).orElse(null);
     }
 }
