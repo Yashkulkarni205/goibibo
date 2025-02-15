@@ -13,10 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
@@ -70,5 +67,12 @@ public class UserController {
         session.invalidate();
         return new ResponseEntity<>("Logout Successful!",HttpStatus.OK);
     }
-
+    @PutMapping("/update")
+    public ResponseEntity<String> updateUser(@RequestBody UserDTO userDTO)
+    {
+        userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        String message = userService.updateUser(userDTO);
+        if(message.equals("success")) return new ResponseEntity<>("User details updated successfully!",HttpStatus.OK);
+        return new ResponseEntity<>(message,HttpStatus.BAD_REQUEST);
+    }
 }

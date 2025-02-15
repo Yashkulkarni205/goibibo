@@ -39,4 +39,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         Optional<User> userOptional = userRepository.findByEmail(email);
         return userOptional.map(User::toDTO).orElse(null);
     }
+
+    @Override
+    public String updateUser(UserDTO userDTO) {
+        Optional<User> userOptional = userRepository.findByEmail(userDTO.getEmail());
+        if(userOptional.isPresent()) {
+            User user = userOptional.get();
+            userRepository.save(user);
+            return "success";
+        }
+        return "User not found!";
+    }
+
 }

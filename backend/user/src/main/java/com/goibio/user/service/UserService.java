@@ -6,4 +6,6 @@ public interface UserService {
     String register(UserDTO userDto);
 
     UserDTO getUser(String email);
+
+    String updateUser(UserDTO userDTO);
 }
