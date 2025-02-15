@@ -32,6 +32,10 @@ export class UserService {
   getCurrentUser(): Observable<any> {
     return this.http.get(`${this.baseUrL}user`, { withCredentials: true });
   }
+
+  update(userData: any): Observable<any> {
+    return this.http.put(`${this.baseUrL}update`, userData, { responseType : "text", withCredentials: true });
+  }
 }
 
 
