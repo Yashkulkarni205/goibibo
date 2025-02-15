@@ -1,0 +1,49 @@
+<div [ngSwitch]="success">
+<div *ngSwitchCase="'register'" class="thank-you-container">
+    <h1>Thank You for Registering with Us</h1>
+    <p>We are excited to have you on board. Kindly, Login to start exploring our services now!</p>
+    <div class="button-container">
+        <button routerLink="/login">Login</button>
+    </div>
+</div>
+<div *ngSwitchCase="'login'" class="logged-in-container">
+    <h1>You Are Successfully Logged In</h1>
+    <p>Welcome back! Continue where you left off or explore new destinations.</p>
+    <div class="button-container">
+        <button routerLink="/flights">Explore</button>
+        <button routerLink="/bookings">Manage Bookings</button>
+    </div>
+</div>
+<div *ngSwitchCase="'logout'" class="logged-in-container">
+    <h1>You Are Successfully Logged Out</h1>
+    <p>Your next great getaway is just a click away! Browse new destinations now or log in to take control of your bookings.</p>
+    <div class="button-container">
+        <button routerLink="/flights">Explore</button>
+        <button routerLink="/login">Login</button>
+    </div>
+</div>
+<div *ngSwitchDefault class="welcome-container">
+    <h1>Welcome to Goibibo Travel Booking</h1>
+    <p>Book your next adventure with us! Quickly make new bookings and manage your existing ones with ease.</p>
+    <div class="button-container">
+        <button routerLink="/flights">Explore</button>
+        <button *ngIf="user; else registerbutton" routerLink="/bookings">Manage Bookings</button>
+        <ng-template #registerbutton><button routerLink="/register">Register</button></ng-template>
+    </div>
+</div>
+</div>
+<style>
+    .welcome-container, .thank-you-container, .logged-in-container {
+        text-align: center;
+        margin-top: 50px;
+    }
+    .button-container {
+        margin-top: 20px;
+    }
+    button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+</style>

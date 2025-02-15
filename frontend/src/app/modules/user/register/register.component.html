@@ -1,0 +1,65 @@
+<form #registerform="ngForm" (ngSubmit)="register(registerform)">
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input #firstName="ngModel" type="text" class="form-control" name="firstName" id="firstName" ngModel required>
+      <small *ngIf="firstName.touched && firstName.invalid" class="text-danger">First Name is required</small>
+    </div>
+    
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input #lastName="ngModel" type="text" class="form-control" name="lastName" id="lastName" ngModel required>
+      <small *ngIf="lastName.touched && lastName.invalid" class="text-danger">Last Name is required</small>
+    </div>
+  
+    <div class="mb-3">
+      <label for="dateOfBirth" class="form-label">Date of Birth</label>
+      <input #dateOfBirth="ngModel" type="date" class="form-control" name="dateOfBirth" id="dateOfBirth" ngModel required>
+      <small *ngIf="dateOfBirth.touched && dateOfBirth.invalid" class="text-danger">Date of Birth is required</small>
+    </div>
+  
+    <div class="mb-3">
+      <label class="form-label">Gender</label>
+      <select #gender="ngModel" class="form-control" name="gender" id="gender" ngModel required>
+        <option value="">Select</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+      <small *ngIf="gender.touched && gender.value==''" class="text-danger">Gender is required</small>
+    </div>
+  
+    <div class="mb-3">
+      <label for="city" class="form-label">City</label>
+      <input #city="ngModel" type="text" class="form-control" name="city" id="city" ngModel required>
+      <small *ngIf="city.touched && city.invalid" class="text-danger">City is required</small>
+    </div>
+  
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input #email="ngModel" type="email" class="form-control" name="email" id="email" 
+        ngModel required 
+        pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
+        <small *ngIf="email.touched && email.errors?.['required']" class="text-danger">Email is required</small>
+        <small *ngIf="email.touched && email.errors?.['pattern']" class="text-danger">Please enter a valid email address</small>
+      </div>
+  
+    <div class="mb-3">
+      <label for="phone" class="form-label">Phone Number</label>
+      <input #phone="ngModel" type="tel" class="form-control" name="phone" id="phone" 
+        ngModel required 
+        pattern="[0-9]{10}">
+        <small *ngIf="phone.touched && phone.errors?.['required']" class="text-danger">Phone Number is required</small>
+        <small *ngIf="phone.touched && phone.errors?.['pattern']" class="text-danger">Phone number should be exactly 10 digits.</small>
+      </div>
+  
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input #password="ngModel" type="password" class="form-control" name="password" id="password" 
+        ngModel required 
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$">
+        <small *ngIf="password.touched && password.errors?.['required']" class="text-danger">Password is required</small>
+        <small *ngIf="password.touched && password.errors?.['pattern']" class="text-danger">Password must be at least 8 characters long and must contain uppercase, lowercase, number, and special characters</small>
+      </div>
+    <button [disabled]="registerform.form.invalid || gender.value==''" type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  

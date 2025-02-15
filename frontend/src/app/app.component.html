@@ -1,0 +1,25 @@
+<nav style="background-color: rgb(255, 102, 0);">
+  <h1 routerLink="/">Goibibo</h1>
+  <ul>
+    <li *ngFor="let option of navOptions" [routerLink]="option.path">
+      <i class="fa-solid {{option.class}}"></i> {{option.name}}
+    </li>
+  </ul>
+  <div>
+    <div *ngIf="user; else login" class="dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-user"></i> {{user?.firstName}}
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" routerLink="/profile">View Profile</a></li>
+        <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+      </ul>
+    </div>
+    <ng-template #login>
+      <a routerLink="/login" class="btn btn-outline-dark">
+        <i class="fa-solid fa-user"></i> Login
+      </a>
+    </ng-template>
+  </div>
+</nav>
+<router-outlet />
