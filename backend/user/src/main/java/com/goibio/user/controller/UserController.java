@@ -44,6 +44,7 @@ public class UserController {
                     new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getPassword())
             );
             SecurityContextHolder.getContext().setAuthentication(authentication);
+            session.setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
             session.setAttribute("USER",userDTO.getEmail());
             return new ResponseEntity<>("Login Successful!",HttpStatus.OK);
         }
@@ -52,7 +53,7 @@ public class UserController {
         }
     }
     @GetMapping("/user")
-    public ResponseEntity<UserDTO> getCurrentUser(HttpSession session)
+    public ResponseEntity<UserDTO> getCurrentUser()
     {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication==null || !authentication.isAuthenticated() || authentication instanceof AnonymousAuthenticationToken) {
