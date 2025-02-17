@@ -10,7 +10,14 @@ import { UserService } from './modules/user/services/user.service';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  user: any;
+  user: any = {
+    firstName: '',
+    lastName: '',
+    dateOfBirth: '',
+    gender: '',
+    city: '',
+    phone: ''
+  };
   constructor(private userService: UserService, private router: Router) {
   }
   ngOnInit() {

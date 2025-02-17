@@ -1,0 +1,94 @@
+/* Modal containers with fixed height and scroll if necessary */
+.thank-you-container,
+.logged-in-container,
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 1000px;
+    height: 80vh;
+    margin: 40px auto;
+    padding: 30px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    text-align: center;
+    justify-content: center;
+    overflow-y: auto; 
+    background: url('../../images/sky.jpg');
+}
+
+/* Style for the heading */
+.thank-you-container h1,
+.logged-in-container h1,
+.welcome-container h1 {
+    font-size: 2em; /* Increased font size for heading */
+    margin-bottom: 15px;
+    color: rgb(255, 255, 255); /* Main color */
+    font-weight: bold;
+}
+
+/* Style for the paragraph */
+.thank-you-container p,
+.logged-in-container p,
+.welcome-container p {
+    font-size: 1.2em; /* Slightly larger paragraph text */
+    color: #333; /* Slightly darker grey for better contrast */
+    margin-bottom: 25px;
+}
+
+/* Button container styling */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Style for buttons */
+.button-container button {
+    border: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: bold;;
+    cursor: pointer;
+    background-color: #fff;
+    color: #333;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect for buttons */
+.button-container button:hover {
+    color: #fff;
+    background-color: rgb(255, 102, 0); /* Slightly darker shade of orange for hover */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+/* Active state for buttons */
+.button-container button:active {
+    transform: translateY(1px); /* Button press effect */
+}
+
+/* Responsive design: small screens (mobile) */
+@media (max-width: 600px) {
+    .success-container {
+        padding: 10px; /* Reduce padding on mobile */
+        justify-content: flex-start; /* Align top on smaller screens */
+    }
+
+    .thank-you-container,
+    .logged-in-container,
+    .welcome-container {
+        margin: 10px auto;
+        width: 100%;
+        padding: 20px;
+        max-height: 80vh; /* Allow the modal to take up less height on small screens */
+        overflow-y: auto; /* Enable scroll if content exceeds max height */
+    }
+
+    .button-container button {
+        width: 100%; /* Full-width buttons for mobile */
+        font-size: 1em;
+    }
+}

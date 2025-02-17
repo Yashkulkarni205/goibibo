@@ -1,22 +1,29 @@
+<div class="main-content">
+  <div class="center-container">
+    <div class="left-side">
+      <h2>Hi, {{user.firstName}}</h2>
+    </div>
+    <div class="right-side">
+      <h2>Profile</h2>
 <form #profileform="ngForm" (ngSubmit)="update(profileform)">
-    <div class="mb-3">
+    <div class="mb-4 form-group">
       <label for="firstName" class="form-label">First Name</label>
       <input #firstName="ngModel" type="text" class="form-control" name="firstName" id="firstName" [(ngModel)]="user.firstName" required>
       <small *ngIf="firstName.touched && firstName.invalid" class="text-danger">First Name is required</small>
     </div>
     
-    <div class="mb-3">
+    <div class="mb-4 form-group">
       <label for="lastName" class="form-label">Last Name</label>
       <input #lastName="ngModel" type="text" class="form-control" name="lastName" id="lastName" [(ngModel)]="user.lastName" required>
       <small *ngIf="lastName.touched && lastName.invalid" class="text-danger">Last Name is required</small>
     </div>
-    <div class="mb-3">
+    <div class="mb-4 form-group">
       <label for="dateOfBirth" class="form-label">Date of Birth</label>
       <input #dateOfBirth="ngModel" type="date" class="form-control" name="dateOfBirth" id="dateOfBirth" [(ngModel)]="user.dateOfBirth" required>
       <small *ngIf="dateOfBirth.touched && dateOfBirth.invalid" class="text-danger">Date of Birth is required</small>
     </div>
   
-    <div class="mb-3">
+    <div class="mb-4 form-group">
       <label class="form-label">Gender</label>
       <select #gender="ngModel" class="form-control" name="gender" id="gender" [(ngModel)]="user.gender" required>
         <option value="">Select</option>
@@ -27,12 +34,12 @@
       <small *ngIf="gender.touched && gender.value==''" class="text-danger">Gender is required</small>
     </div>
   
-    <div class="mb-3">
+    <div class="mb-4 form-group">
       <label for="city" class="form-label">City</label>
       <input #city="ngModel" type="text" class="form-control" name="city" id="city" [(ngModel)]="user.city" required>
       <small *ngIf="city.touched && city.invalid" class="text-danger">City is required</small>
     </div>
-    <div class="mb-3">
+    <div class="mb-4 form-group">
       <label for="phone" class="form-label">Phone Number</label>
       <input #phone="ngModel" type="tel" class="form-control" name="phone" id="phone" 
       [(ngModel)]="user.phone" required 
@@ -42,4 +49,8 @@
       </div>
     <button [disabled]="profileform.form.invalid || gender.value==''" type="submit" class="btn btn-primary">Submit</button>
   </form>
+    </div>
+  </div>  
+</div>
+
   

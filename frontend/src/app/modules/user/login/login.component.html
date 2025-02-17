@@ -1,21 +1,32 @@
-<form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
-  <div class="mb-3">
-    <label for="email" class="form-label">Email address</label>
-    <input #email="ngModel" type="email" class="form-control" name="email" id="email" 
-      ngModel required 
-      pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
-      <small *ngIf="email.touched && email.errors?.['required']" class="text-danger">Email is required</small>
-      <small *ngIf="email.touched && email.errors?.['pattern']" class="text-danger">Please enter a valid email address</small>
+  <div class="main-content">
+    <div class="center-container">
+      <div class="left-side">
+        <h2>Login Now!</h2>
+      </div>
+      <div class="right-side">
+        <h2>Login</h2>
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+          <div class="mb-4 form-group">
+            <label for="email" class="form-label">Email address</label>
+            <input #email="ngModel" type="email" class="form-control" name="email" id="email" 
+              ngModel required 
+              pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
+              <small *ngIf="email.touched && email.errors?.['required']" class="text-danger">Email is required</small>
+              <small *ngIf="email.touched && email.errors?.['pattern']" class="text-danger">Please enter a valid email address</small>
+            </div>
+            
+          <div class="mb-4.5 form-group">
+            <label for="password" class="form-label">Password</label>
+            <input #password="ngModel" type="password" class="form-control" name="password" id="password" 
+              ngModel required 
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$">
+              <small *ngIf="password.touched && password.errors?.['required']" class="text-danger">Password is required</small>
+              <small *ngIf="password.touched && password.errors?.['pattern']" class="text-danger">Password must be at least 8 characters long and must contain uppercase, lowercase, number, and special characters</small>
+            </div>
+          <button [disabled]="loginForm.form.invalid" type="submit" class="btn btn-primary">Login</button>
+        </form>
+          <div routerLink="/register" class="sign-in-link">Not a member? <span>SignUp now</span></div>        
+      </div>
     </div>
-    
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input #password="ngModel" type="password" class="form-control" name="password" id="password" 
-      ngModel required 
-      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$">
-      <small *ngIf="password.touched && password.errors?.['required']" class="text-danger">Password is required</small>
-      <small *ngIf="password.touched && password.errors?.['pattern']" class="text-danger">Password must be at least 8 characters long and must contain uppercase, lowercase, number, and special characters</small>
-    </div>
-  <button [disabled]="loginForm.form.invalid" type="submit" class="btn btn-primary">Login</button>
-</form>
-  <div routerLink="/register">Already a user? Sign In </div>
+  </div>
+  

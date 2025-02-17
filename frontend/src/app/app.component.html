@@ -1,16 +1,23 @@
-<nav style="background-color: rgb(255, 102, 0);">
-  <h1 routerLink="/">Goibibo</h1>
-  <ul>
-    <li *ngFor="let option of navOptions" [routerLink]="option.path">
+<nav class="navbar navbar-expand-lg navbar-light">
+  <!-- Logo on the left -->
+  <h1 routerLink="/" class="navbar-brand"><span style="color:rgb(255, 102, 0);">Go</span>ibibo</h1>
+
+  <!-- Centered navigation items -->
+  <ul class="navbar-nav d-flex flex-grow-1 justify-content-center">
+    <li *ngFor="let option of navOptions" [routerLink]="option.path" class="nav-item">
       <i class="fa-solid {{option.class}}"></i> {{option.name}}
     </li>
   </ul>
-  <div>
+
+  <!-- Right-aligned dropdown/login button -->
+  <div class="d-flex">
     <div *ngIf="user; else login" class="dropdown">
+      <!-- Added data-bs-toggle and aria-expanded for dropdown behavior -->
       <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fa-solid fa-user"></i> {{user?.firstName}}
+        <i class="fa-solid fa-user"></i> {{user?.firstName}} {{user?.lastName}}
       </a>
-      <ul class="dropdown-menu">
+      <!-- Dropdown Menu -->
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         <li><a class="dropdown-item" routerLink="/profile">View Profile</a></li>
         <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
       </ul>
@@ -22,4 +29,5 @@
     </ng-template>
   </div>
 </nav>
+
 <router-outlet />

@@ -1,0 +1,190 @@
+body {
+    overflow: hidden;
+}
+/* Centered Container */
+.center-container {
+    display: flex;
+    width: 80%;
+    max-width: 1000px;
+    height: 80vh;
+    margin: 40px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Left side (background image) */
+.left-side {
+    flex: 1;
+    background: url('../../../common/images/register.jpg');
+    background-repeat: round;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+}
+
+.right-side h2{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.right-side {
+    flex: 1;
+    background-color: #fff;
+    padding: 30px;
+    overflow-y: auto;
+    scrollbar-width: thin; 
+    scrollbar-color: rgb(217, 217, 217) #f1f1f1; 
+}
+
+.right-side .sign-in-link {
+    margin-top: 15px;
+    font-size: 14px;
+    color: rgb(74, 74, 74);
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out, text-decoration 0.3s ease-in-out;
+}
+
+.sign-in-link span{
+    color: rgb(255, 102, 0);
+}
+.sign-in-link span:hover{
+    text-decoration: underline;
+}
+
+/* Webkit Scrollbar (Chrome, Safari, Edge) */
+.right-side::-webkit-scrollbar {
+    width: 8px; /* Scrollbar width */
+}
+
+/* Scrollbar track (the part that the thumb slides within) */
+.right-side::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Light background */
+    border-radius: 5px;
+}
+
+/* Scrollbar thumb (the draggable part) */
+.right-side::-webkit-scrollbar-thumb {
+    background-color: rgb(217, 217, 217); /* Thumb color */
+    border-radius: 5px;
+    border: 2px solid #fff; /* Border between thumb and track */
+}
+
+/* Scrollbar thumb hover state */
+.right-side::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(217, 217, 217); /* Thumb hover color */
+}
+
+
+/* Form Styling */
+form {
+    max-width: 100%;
+    width: 100%;
+}
+
+/* Wrapper for input and error message */
+.form-group {
+    position: relative;
+    margin-bottom: 30px; /* space between inputs */
+}
+
+form .form-label {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+
+form .form-control {
+    border-radius: 5px;
+    padding: 12px 15px;
+    font-size: 16px;
+    color: #333;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease-in-out;
+}
+
+form .form-control:focus {
+    border-color: rgb(255, 102, 0);
+    box-shadow: 0 0 5px rgba(255, 102, 0, 0.5);
+    outline: none;
+}
+
+form .form-control.invalid {
+    border-color: red;
+}
+
+form .text-danger {
+    font-size: 12px;
+    color: red;
+    position: absolute;
+    bottom: -18px; /* Move error message below the input */
+    left: 0;
+    width: 100%;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Button Styling */
+form button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: rgb(255, 102, 0);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+form button:disabled {
+    background-color: rgb(255, 178, 127);
+    cursor: not-allowed;
+}
+
+form button:hover {
+    background-color: rgb(255, 87, 0);
+}
+
+form button:focus {
+    outline: 2px solid #ff6600;
+    outline-offset: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .center-container {
+        flex-direction: column;
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .left-side {
+        height: 200px;
+        max-width: unset;
+    }
+
+    .right-side {
+        padding: 20px;
+    }
+
+    form button {
+        font-size: 14px;
+    }
+
+    form .form-control {
+        font-size: 14px;
+    }
+
+    form .form-label {
+        font-size: 14px;
+    }
+}
